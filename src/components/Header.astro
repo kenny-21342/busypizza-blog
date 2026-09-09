@@ -1,0 +1,64 @@
+---
+import { SITE_TITLE } from '../consts';
+import HeaderLink from './HeaderLink.astro';
+---
+
+<header>
+	<nav>
+		<a class="brand" href="/">{SITE_TITLE}</a>
+		<div class="links">
+			<HeaderLink href="/writing">Writing</HeaderLink>
+			<HeaderLink href="/devlog">Dev log</HeaderLink>
+			<HeaderLink href="/archive">Archive</HeaderLink>
+			<HeaderLink href="/about">About</HeaderLink>
+			<a href="/rss.xml" title="RSS feed">RSS</a>
+		</div>
+	</nav>
+</header>
+<style>
+	header {
+		border-bottom: 1px solid var(--rule);
+		background: var(--paper);
+	}
+	nav {
+		width: 720px;
+		max-width: calc(100% - 2em);
+		margin: auto;
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1em;
+		padding: 1.1em 1em;
+		flex-wrap: wrap;
+	}
+	.brand {
+		font-weight: 600;
+		font-size: 1rem;
+		letter-spacing: -0.01em;
+		color: var(--ink);
+		text-decoration: none;
+	}
+	.links {
+		display: flex;
+		gap: 1.1em;
+		font-size: 0.9rem;
+	}
+	.links :global(a) {
+		color: var(--ink-dim);
+		text-decoration: none;
+	}
+	.links :global(a:hover),
+	.links :global(a.active) {
+		color: var(--accent);
+	}
+	.links :global(a.active) {
+		text-decoration: none;
+		font-weight: 600;
+	}
+	@media (max-width: 520px) {
+		.links {
+			gap: 0.85em;
+			font-size: 0.85rem;
+		}
+	}
+</style>

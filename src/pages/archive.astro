@@ -1,0 +1,88 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import PostList from '../components/PostList.astro';
+import { SITE_TITLE } from '../consts';
+import { getAllTags, getPublishedPosts } from '../lib/posts';
+
+const posts = await getPublishedPosts();
+const tags = await getAllTags();
+
+// Group by year, newest first.
+const byYear = new Map<number, typeof posts>();
+for (const post of posts) {
+	const year = post.data.pubDate.getFullYear();
+	byYear.set(year, [...(byYear.get(year) ?? []), post]);
+}
+const years = [...byYear.keys()].sort((a, b) => b - a);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Archive — ${SITE_TITLE}`} description="Every post, newest first." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Archive</h1>
+			{
+				tags.length > 0 && (
+					<p class="tags">
+						{tags.map(({ tag, count }) => (
+							<a href={`/tags/${tag}/`}>
+								{tag} <span class="count">{count}</span>
+							</a>
+						))}
+					</p>
+				)
+			}
+			{
+				years.map((year) => (
+					<section>
+						<h2 class="year">{year}</h2>
+						<PostList posts={byYear.get(year)!} showCategory />
+					</section>
+				))
+			}
+			{posts.length === 0 && <p class="muted">No posts yet.</p>}
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5em;
+		margin: 0 0 2.5em;
+	}
+	.tags a {
+		font-size: 0.8rem;
+		border: 1px solid var(--rule);
+		border-radius: 2px;
+		padding: 2px 8px;
+		text-decoration: none;
+		color: var(--ink-dim);
+	}
+	.tags a:hover {
+		border-color: var(--accent);
+		color: var(--accent);
+	}
+	.count {
+		opacity: 0.6;
+	}
+	.year {
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: var(--ink-dim);
+		margin: 2.5em 0 0.5em;
+		font-weight: 600;
+	}
+	section:first-of-type .year {
+		margin-top: 0;
+	}
+</style>

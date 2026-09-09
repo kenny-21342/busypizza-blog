@@ -1,0 +1,39 @@
+---
+const today = new Date();
+---
+
+<footer>
+	<div class="inner">
+		<span>&copy; {today.getFullYear()} Kenny</span>
+		<span class="sep">·</span>
+		<a href="https://busypizza.bond">busypizza.bond</a>
+		<span class="sep">·</span>
+		<a href="/rss.xml">RSS</a>
+	</div>
+</footer>
+<style>
+	footer {
+		border-top: 1px solid var(--rule);
+		color: var(--ink-dim);
+		font-size: 0.85rem;
+	}
+	.inner {
+		width: 720px;
+		max-width: calc(100% - 2em);
+		margin: auto;
+		padding: 1.6em 1em 3em;
+		display: flex;
+		gap: 0.6em;
+		flex-wrap: wrap;
+	}
+	.sep {
+		opacity: 0.5;
+	}
+	a {
+		color: var(--ink-dim);
+		text-decoration: none;
+	}
+	a:hover {
+		color: var(--accent);
+	}
+</style>

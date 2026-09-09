@@ -1,0 +1,53 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import PostList from '../components/PostList.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getPublishedPosts } from '../lib/posts';
+
+const recent = (await getPublishedPosts()).slice(0, 8);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>busypizza</h1>
+			<p class="lede">
+				Writing, and notes from building things. The tools themselves live at
+				<a href="https://busypizza.bond">busypizza.bond</a>.
+			</p>
+			<h2 class="section">Recent</h2>
+			<PostList posts={recent} showCategory empty="First post coming soon." />
+			<p class="more"><a href="/archive">All posts →</a></p>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.lede {
+		color: var(--ink-dim);
+		max-width: 52ch;
+		margin-bottom: 2.5em;
+	}
+	.section {
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: var(--ink-dim);
+		margin: 0 0 0.5em;
+	}
+	.more {
+		margin-top: 1.5em;
+		font-size: 0.9rem;
+	}
+	.more a {
+		text-decoration: none;
+	}
+</style>

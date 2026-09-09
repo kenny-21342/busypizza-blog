@@ -1,0 +1,48 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import PostList from '../../components/PostList.astro';
+import { SITE_TITLE } from '../../consts';
+import { getAllTags, getPostsByTag } from '../../lib/posts';
+
+export async function getStaticPaths() {
+	const tags = await getAllTags();
+	return tags.map(({ tag }) => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params;
+const posts = await getPostsByTag(tag!);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`#${tag} — ${SITE_TITLE}`} description={`Posts tagged ${tag}.`} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<p class="crumb"><a href="/archive">← Archive</a></p>
+			<h1>{tag}</h1>
+			<p class="lede">{posts.length} {posts.length === 1 ? 'post' : 'posts'}</p>
+			<PostList posts={posts} showCategory />
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.crumb {
+		font-size: 0.85rem;
+		margin-bottom: 1em;
+	}
+	.crumb a {
+		text-decoration: none;
+		color: var(--ink-dim);
+	}
+	.lede {
+		color: var(--ink-dim);
+		margin-bottom: 2.5em;
+	}
+</style>

@@ -1,0 +1,36 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import PostList from '../components/PostList.astro';
+import { CATEGORIES, SITE_TITLE } from '../consts';
+import { getPostsByCategory } from '../lib/posts';
+
+const category = 'writing' as const;
+const { label, blurb } = CATEGORIES[category];
+const posts = await getPostsByCategory(category);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${label} — ${SITE_TITLE}`} description={blurb} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>{label}</h1>
+			<p class="lede">{blurb}</p>
+			<PostList posts={posts} />
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.lede {
+		color: var(--ink-dim);
+		max-width: 52ch;
+		margin-bottom: 2.5em;
+	}
+</style>

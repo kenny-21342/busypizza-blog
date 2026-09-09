@@ -1,0 +1,57 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE, TOOLS } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`About — ${SITE_TITLE}`} description="Who writes this and what else they build." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>About</h1>
+			<p>
+				I'm Kenny. This is where I write — essays under <a href="/writing">Writing</a>, and
+				build notes from my projects under <a href="/devlog">Dev log</a>.
+			</p>
+			<p>
+				Posts are written in Typora, committed to a git repo, and deployed as a static site.
+				There is no database and no admin panel, which is deliberate.
+			</p>
+
+			<h2>Things I've built</h2>
+			<p class="muted">These live on the sibling domain, <a href="https://busypizza.bond">busypizza.bond</a>.</p>
+			<ul class="tools">
+				{TOOLS.map((tool) => (
+					<li><a href={tool.href}>{tool.name}</a></li>
+				))}
+			</ul>
+
+			<h2>Elsewhere</h2>
+			<ul class="tools">
+				<li><a href="https://github.com/kenny-21342">GitHub</a></li>
+				<li><a href="/rss.xml">RSS feed</a></li>
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.tools {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1.5em;
+	}
+	.tools li {
+		padding: 0.4em 0;
+		border-bottom: 1px solid var(--rule);
+	}
+	.tools a {
+		text-decoration: none;
+	}
+</style>
