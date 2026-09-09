@@ -1,6 +1,6 @@
 // Global site data, imported anywhere via `import { ... } from '../consts'`.
 
-export const SITE_TITLE = 'busypizza';
+export const SITE_TITLE = 'BusyPizza 🍕';
 export const SITE_DESCRIPTION =
 	'Writing and dev logs by Kenny — notes on the projects, and everything else.';
 export const SITE_URL = 'https://www.busypizza.xyz';
