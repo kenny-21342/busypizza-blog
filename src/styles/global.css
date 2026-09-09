@@ -223,6 +223,14 @@ hr {
 	color: var(--ink-dim);
 }
 
+/* A wide markdown table scrolls inside itself; the page never scrolls sideways. */
+.prose table {
+	display: block;
+	overflow-x: auto;
+	width: max-content;
+	min-width: 100%;
+}
+
 @media (max-width: 720px) {
 	body {
 		font-size: 16px;
