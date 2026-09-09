@@ -4,7 +4,7 @@ description: 'I asked for help building a blog. The first thing we found was tha
 pubDate: 2026-09-09
 category: devlog
 tags: ['dns', 'security', 'vercel']
-draft: false
+draft: true
 ---
 
 I own two domains, bought twelve minutes apart in May: `busypizza.bond` for my
