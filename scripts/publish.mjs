@@ -17,7 +17,7 @@ import { basename, dirname, extname, join } from 'node:path';
 import { slugify } from './lib/slugify.mjs';
 
 const BLOG_DIR = join('src', 'content', 'blog');
-const SITE = 'https://busypizza.xyz';
+const SITE = 'https://www.busypizza.xyz';
 
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');

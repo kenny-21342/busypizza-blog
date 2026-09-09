@@ -6,7 +6,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://busypizza.xyz',
+	site: 'https://www.busypizza.xyz',
 	integrations: [mdx(), sitemap({ filter: (page) => !page.includes('/draft') })],
 	markdown: {
 		// Shiki is built in and runs at build time, so dev-log posts carry no

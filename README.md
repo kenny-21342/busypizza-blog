@@ -1,4 +1,4 @@
-# busypizza.xyz — blog
+# www.busypizza.xyz — blog
 
 Astro static site. Posts are markdown written in **Typora** and published by
 script. No CMS, no database, no server to patch.
@@ -82,12 +82,13 @@ build time — no client-side highlighter.
 
 ## Deploying
 
-Not yet deployed. `busypizza.xyz` needs its nameservers moved off Vercel's shared
-DNS first — see the plan at `~/.claude/plans/`. Once that is done:
+Live at **https://www.busypizza.xyz**, deployed from `main` on every push.
 
-```bash
-gh repo create kenny-21342/busypizza-blog --private --source=. --push
-```
+The canonical host is `www`; the apex 308-redirects to it, which is how Vercel
+configured the pair. `astro.config.mjs` `site`, `SITE_URL` in `src/consts.ts`, and
+`SITE` in `scripts/publish.mjs` must all agree with whichever host is canonical —
+if the redirect is ever flipped to make the apex primary, change all three.
 
-then import in Vercel under the `YKPao Study` team and add the domain, pointing
-the `A`/`CNAME` records from Cloudflare with the proxy off.
+- Repo: `github.com/kenny-21342/busypizza-blog` (private)
+- Vercel project: `busypizza-blog` under the `YKPao Study` team
+- DNS: Cloudflare (`collins`/`harvey.ns.cloudflare.com`), records DNS-only, proxy off

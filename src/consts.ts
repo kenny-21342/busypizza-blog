@@ -3,7 +3,7 @@
 export const SITE_TITLE = 'busypizza';
 export const SITE_DESCRIPTION =
 	'Writing and dev logs by Kenny — notes on the projects, and everything else.';
-export const SITE_URL = 'https://busypizza.xyz';
+export const SITE_URL = 'https://www.busypizza.xyz';
 
 /** The two halves of the site. Keys must match the `category` field in frontmatter. */
 export const CATEGORIES = {
