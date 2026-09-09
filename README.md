@@ -1,63 +1,93 @@
-# Astro Starter Kit: Blog
+# busypizza.xyz — blog
 
-```sh
-npm create astro@latest -- --template blog
+Astro static site. Posts are markdown written in **Typora** and published by
+script. No CMS, no database, no server to patch.
+
+## Writing a post
+
+```bash
+npm run new -- "Post title" devlog     # or: writing
+open -a Typora src/content/blog/post-title.md
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+`npm run new` writes frontmatter that already satisfies the schema, so Typora is
+only ever editing a file that builds.
 
-Features:
+Preview while writing — drafts are visible in dev, invisible in production:
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+```bash
+npm run dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Publish:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+npm run publish -- post-title          # or bare: publishes every draft
+npm run publish -- --dry-run           # show what would happen
+npm run publish -- post-title --no-push
+```
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+`publish` slugifies the filename, moves Typora's sibling `.assets/` folder with it
+and rewrites the image references, flips `draft: true` → `false`, **builds to
+validate**, then stages by path, commits, and pushes. Vercel deploys on push.
 
-Any static assets, like images, can be placed in the `public/` directory.
+The build runs before the commit deliberately: a bad frontmatter field fails
+locally rather than becoming a red deploy.
 
-## 🧞 Commands
+## Typora setup (once)
 
-All commands are run from the root of the project, from a terminal:
+**Preferences → Image**
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- *When insert local image*: **Copy image to custom folder** → `./${filename}.assets`
+- Tick **Use relative path if possible**
 
-## 👀 Want to learn more?
+Astro's markdown pipeline optimizes relative image references natively, so pasted
+screenshots need no extra step.
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Also turn on YAML front matter display so the schema fields are editable as a form.
 
-## Credit
+## Frontmatter
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+```yaml
+---
+title: 'Post title'
+description: 'One sentence. Used on listings, RSS, and og:description.'
+pubDate: 2026-09-09
+updatedDate: 2026-09-20   # optional
+category: devlog          # devlog | writing
+tags: ['dns', 'security'] # free-form; each gets a /tags/<tag>/ page
+draft: true               # publish script flips this
+heroImage: ./cover.png    # optional, relative path
+---
+```
+
+The schema lives in `src/content.config.ts` and is the single source of truth —
+anything it rejects will not build.
+
+## Layout
+
+| Path | What |
+|---|---|
+| `src/content/blog/` | posts, one markdown file each |
+| `src/content.config.ts` | frontmatter schema |
+| `src/lib/posts.ts` | shared queries; draft filtering lives here |
+| `src/pages/writing.astro`, `devlog.astro` | category indexes |
+| `src/pages/archive.astro` | everything, grouped by year |
+| `src/pages/tags/[tag].astro` | per-tag pages |
+| `src/styles/global.css` | palette, taken from the busypizza.bond landing page |
+| `scripts/publish.mjs` | the publish pipeline |
+
+Code blocks use Astro's built-in Shiki with a light/dark theme pair, highlighted at
+build time — no client-side highlighter.
+
+## Deploying
+
+Not yet deployed. `busypizza.xyz` needs its nameservers moved off Vercel's shared
+DNS first — see the plan at `~/.claude/plans/`. Once that is done:
+
+```bash
+gh repo create kenny-21342/busypizza-blog --private --source=. --push
+```
+
+then import in Vercel under the `YKPao Study` team and add the domain, pointing
+the `A`/`CNAME` records from Cloudflare with the proxy off.
