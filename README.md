@@ -3,7 +3,36 @@
 Astro static site. Posts are markdown written in **Typora** and published by
 script. No CMS, no database, no server to patch.
 
-## Writing a post
+## Publishing by dropping a file
+
+```bash
+npm run watch          # leave running; ctrl-c to stop
+```
+
+Then save or drag **any** `.md` file into `posts-inbox/` and it goes live on its
+own. The watcher waits for the file to stop changing, fills in whatever
+frontmatter is missing — `title` from the leading `# heading`, `description` from
+the first paragraph, today's date — moves it (and Typora's sibling `.assets/`
+folder) into `src/content/blog/` under a slugified name, then runs the same
+`publish` pipeline below: build, commit, push.
+
+A subfolder sets the category — `posts-inbox/writing/x.md` gets
+`category: writing`; a file at the top level defaults to `devlog`.
+
+Files are **moved** out of the inbox, so nothing is published twice. `posts-inbox/`
+is gitignored.
+
+```bash
+npm run drain          # process whatever is sitting in the inbox, then exit
+npm run watch -- --dry-run    # show what would happen, change nothing
+npm run watch -- --no-push    # commit locally, don't push
+```
+
+Drafting in Typora directly under `src/content/blog/` still works and is the
+better option for a post you want to sit on — the watcher only ever touches the
+inbox, so it will not publish a half-finished draft out from under you.
+
+## Writing a post by hand
 
 ```bash
 npm run new -- "Post title" devlog     # or: writing
@@ -75,6 +104,8 @@ anything it rejects will not build.
 | `src/pages/archive.astro` | everything, grouped by year |
 | `src/pages/tags/[tag].astro` | per-tag pages |
 | `src/styles/global.css` | palette, taken from the busypizza.bond landing page |
+| `posts-inbox/` | drop folder — a `.md` left here is published automatically |
+| `scripts/watch-posts.mjs` | the drop-folder watcher |
 | `scripts/publish.mjs` | the publish pipeline |
 
 Code blocks use Astro's built-in Shiki with a light/dark theme pair, highlighted at

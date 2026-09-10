@@ -11,7 +11,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "new": "node scripts/new-post.mjs",
-    "publish": "node scripts/publish.mjs"
+    "publish": "node scripts/publish.mjs",
+    "watch": "node scripts/watch-posts.mjs",
+    "drain": "node scripts/watch-posts.mjs --once"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.1",
