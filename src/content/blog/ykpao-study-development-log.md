@@ -3,7 +3,7 @@ title: 'YKPao Study — development log'
 description: 'A past-paper study platform for IB and CAIE students, built between June and September 2026.'
 pubDate: 2026-09-30
 category: devlog
-tags: []
+tags: ['nextjs', 'postgres', 'ai', 'testing', 'education']
 draft: false
 ---
 

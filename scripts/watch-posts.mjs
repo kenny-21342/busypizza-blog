@@ -67,18 +67,32 @@ async function settle(file, { interval = 400, stableFor = 2, timeout = 30_000 } 
 
 const quote = (s) => `'${String(s).replace(/'/g, "''")}'`;
 
-/** First paragraph of prose, skipping headings, images, quotes and code fences. */
+/**
+ * First paragraph of prose, skipping headings, images, quotes and code fences.
+ * Markdown written in Typora is hard-wrapped, so the paragraph is joined across
+ * its lines before trimming — taking a single line would cut mid-sentence.
+ */
 function firstParagraph(body) {
 	const lines = body.split(/\r?\n/);
 	let inFence = false;
+	const collected = [];
 	for (const line of lines) {
 		const t = line.trim();
 		if (/^(```|~~~)/.test(t)) { inFence = !inFence; continue; }
-		if (inFence || !t) continue;
-		if (/^(#|>|!\[|\||-{3,}|\*|-\s|\d+\.\s)/.test(t)) continue;
-		return t.replace(/[*_`[\]]/g, '').slice(0, 160);
+		if (inFence) continue;
+		if (!t) { if (collected.length) break; continue; }
+		if (/^(#|>|!\[|\||-{3,}|\*|-\s|\d+\.\s)/.test(t)) {
+			if (collected.length) break;
+			continue;
+		}
+		collected.push(t);
 	}
-	return '';
+	const text = collected.join(' ').replace(/[*_`[\]]/g, '').replace(/\s+/g, ' ').trim();
+	if (text.length <= 160) return text;
+	// Prefer a whole sentence; fall back to a word boundary rather than mid-word.
+	const sentence = text.slice(0, 200).match(/^.*?[.!?](?=\s|$)/);
+	if (sentence && sentence[0].length >= 60) return sentence[0];
+	return `${text.slice(0, 157).replace(/\s+\S*$/, '')}…`;
 }
 
 /**
