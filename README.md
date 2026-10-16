@@ -32,6 +32,29 @@ Drafting in Typora directly under `src/content/blog/` still works and is the
 better option for a post you want to sit on — the watcher only ever touches the
 inbox, so it will not publish a half-finished draft out from under you.
 
+## Projects and their dates
+
+`/projects` lists every project with its status and open items. The items and dates are
+not written here — Apple Reminders is the ledger, and the site mirrors it:
+
+```bash
+npm run sync:todos     # reads the project lists in Reminders -> src/data/todos.json
+```
+
+macOS only; the first run asks permission to control Reminders. Which lists are
+published is the `LISTS` map at the top of `scripts/sync-todos.mjs`, and lists left out
+(a private project, school homework) say why in a comment there. An item with no due
+date is shown as "no date set" rather than given one.
+
+Projects themselves live in `src/data/projects.ts`. Two optional fields cover the places
+where Reminders alone is wrong or silent: `target` (a date the project's own README
+states, for a project with no list) and `note` (where the list and the repo disagree).
+
+A dev log sets `project: <slug>` in its frontmatter to show that project's open items
+under the post. An unknown slug fails the build.
+
+`todos.json` is a snapshot: re-run the sync and commit it to refresh the page.
+
 ## Writing a post by hand
 
 ```bash
@@ -87,6 +110,7 @@ category: devlog          # devlog | writing
 tags: ['dns', 'security'] # free-form; each gets a /tags/<tag>/ page
 draft: true               # publish script flips this
 heroImage: ./cover.png    # optional, relative path
+project: betternotes      # optional; slug from src/data/projects.ts
 ---
 ```
 
@@ -106,6 +130,9 @@ anything it rejects will not build.
 | `src/styles/global.css` | palette, taken from the busypizza.bond landing page |
 | `posts-inbox/` | drop folder — a `.md` left here is published automatically |
 | `scripts/watch-posts.mjs` | the drop-folder watcher |
+| `scripts/sync-todos.mjs` | Reminders -> `src/data/todos.json` |
+| `src/data/projects.ts` | the project registry behind `/projects` |
+| `src/pages/projects.astro` | status, deadlines and open items, across projects |
 | `scripts/publish.mjs` | the publish pipeline |
 
 Code blocks use Astro's built-in Shiki with a light/dark theme pair, highlighted at

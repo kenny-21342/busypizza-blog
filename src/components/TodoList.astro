@@ -1,0 +1,109 @@
+---
+import { projectBySlug } from '../data/projects';
+import { dueState, formatDue, relative, type Todo } from '../lib/todos';
+
+interface Props {
+	/** Rows may carry a `project` slug (the cross-project view) to show where each belongs. */
+	todos: (Todo & { project?: string })[];
+}
+
+const { todos } = Astro.props;
+---
+
+<ul class="todos">
+	{
+		todos.map((t) => {
+			const state = dueState(t.due);
+			return (
+				<li class={`state-${state}`}>
+					<span class="when">
+						{t.due ? (
+							<>
+								<time datetime={t.due}>{formatDue(t.due)}</time>
+								<span class="rel">{relative(t.due)}</span>
+							</>
+						) : (
+							<span class="rel">no date set</span>
+						)}
+					</span>
+					<span class="what">
+						{t.priority !== null && <span class="p">P{t.priority}</span>}
+						{t.title}
+						{t.project && (
+							<a class="proj" href={`#${t.project}`}>
+								{projectBySlug(t.project)?.name ?? t.project}
+							</a>
+						)}
+					</span>
+				</li>
+			);
+		})
+	}
+</ul>
+
+<style>
+	.todos {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		display: grid;
+		grid-template-columns: 9.5em 1fr;
+		gap: 0.2em 1em;
+		padding: 0.5em 0;
+		border-bottom: 1px solid var(--rule);
+		font-size: 0.92rem;
+		line-height: 1.45;
+	}
+	li:last-child {
+		border-bottom: 0;
+	}
+	.when {
+		display: flex;
+		flex-direction: column;
+		font-variant-numeric: tabular-nums;
+	}
+	.rel {
+		font-size: 0.75rem;
+		color: var(--ink-dim);
+	}
+	.state-overdue .rel {
+		color: var(--accent);
+		font-weight: 600;
+	}
+	.state-undated .rel {
+		font-style: italic;
+	}
+	.proj {
+		display: block;
+		font-size: 0.75rem;
+		color: var(--ink-dim);
+		text-decoration: none;
+	}
+	.proj:hover {
+		color: var(--accent);
+	}
+	.p {
+		display: inline-block;
+		font-size: 0.65rem;
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		border: 1px solid var(--rule);
+		border-radius: 2px;
+		padding: 0 4px;
+		margin-right: 0.55em;
+		color: var(--ink-dim);
+		vertical-align: 0.1em;
+	}
+	@media (max-width: 560px) {
+		li {
+			grid-template-columns: 1fr;
+		}
+		.when {
+			flex-direction: row;
+			gap: 0.6em;
+			align-items: baseline;
+		}
+	}
+</style>

@@ -13,7 +13,8 @@
     "new": "node scripts/new-post.mjs",
     "publish": "node scripts/publish.mjs",
     "watch": "node scripts/watch-posts.mjs",
-    "drain": "node scripts/watch-posts.mjs --once"
+    "drain": "node scripts/watch-posts.mjs --once",
+    "sync:todos": "node scripts/sync-todos.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.1",

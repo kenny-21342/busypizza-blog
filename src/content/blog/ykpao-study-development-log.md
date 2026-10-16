@@ -5,6 +5,7 @@ pubDate: 2026-09-30
 category: devlog
 tags: ['nextjs', 'postgres', 'ai', 'testing', 'education']
 draft: false
+project: ykpao-study
 ---
 
 A past-paper study platform for IB and CAIE students, built between June and

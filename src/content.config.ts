@@ -18,6 +18,8 @@ const blog = defineCollection({
 			// New posts start as drafts; `npm run publish` flips this.
 			draft: z.boolean().default(true),
 			heroImage: z.optional(image()),
+			// Slug from src/data/projects.ts. Renders that project's open to-dos under the post.
+			project: z.string().optional(),
 		}),
 });
 

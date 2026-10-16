@@ -1,0 +1,461 @@
+{
+	"generatedAt": "2026-10-16T14:46:05.151Z",
+	"lists": [
+		{
+			"list": "06 BetterNotes",
+			"project": "betternotes",
+			"items": [
+				{
+					"title": "Finish and commit the current app changes",
+					"priority": 1,
+					"due": null
+				},
+				{
+					"title": "Audit unfinished services and user flows",
+					"priority": 1,
+					"due": null
+				},
+				{
+					"title": "Confirm Apple Developer account and prepare TestFlight",
+					"priority": 2,
+					"due": "2026-10-12"
+				},
+				{
+					"title": "Prepare App Store privacy material and screenshots",
+					"priority": 2,
+					"due": "2026-10-20"
+				},
+				{
+					"title": "Submit BetterNotes for App Store review",
+					"priority": 2,
+					"due": "2026-10-26"
+				},
+				{
+					"title": "BetterNotes live on the App Store",
+					"priority": 3,
+					"due": "2026-10-31"
+				}
+			]
+		},
+		{
+			"list": "07 LaTeX Visual Editor",
+			"project": "shipout",
+			"items": [
+				{
+					"title": "Finish the current Shipout editing changes",
+					"priority": 1,
+					"due": null
+				},
+				{
+					"title": "Re-run the four-document equivalence and typing gate",
+					"priority": 1,
+					"due": null
+				},
+				{
+					"title": "Package and sign a standalone macOS build",
+					"priority": 2,
+					"due": "2026-11-03"
+				},
+				{
+					"title": "Observe a teammate using a complete real document",
+					"priority": 2,
+					"due": "2026-11-04"
+				}
+			]
+		},
+		{
+			"list": "08 D7000 Control",
+			"project": "d7000-control",
+			"items": [
+				{
+					"title": "🛒 HARDWARE DEADLINE: finalise the BOM from BUILD_MANUAL.md",
+					"priority": 0,
+					"due": "2026-11-20"
+				},
+				{
+					"title": "🛒 ORDER ALL PARTS (steppers, drivers, ESP32, optocoupler, MC-DC2 cable, bearings, slip ring)",
+					"priority": 0,
+					"due": "2026-11-30"
+				},
+				{
+					"title": "🛒 Send the 5 STLs to a printer — they are exported and ready",
+					"priority": 0,
+					"due": "2026-12-05"
+				},
+				{
+					"title": "Pi 4 + gphoto2 ↔ D7000 over USB: shutter, live view, RAW+JPEG download",
+					"priority": 1,
+					"due": "2026-12-20"
+				},
+				{
+					"title": "Optocoupler shutter release + verify the persisted actuation budget",
+					"priority": 1,
+					"due": "2027-01-05"
+				},
+				{
+					"title": "Flash esp32/pantilt.ino; validate homing, backlash compensation, IMU settle",
+					"priority": 2,
+					"due": "2027-01-20"
+				},
+				{
+					"title": "Torque validation under real load: camera + 18-200mm at full extension, tilted",
+					"priority": 2,
+					"due": "2027-01-31"
+				},
+				{
+					"title": "Mechanical assembly: print, fit, balance slide adjustment, cable routing",
+					"priority": 3,
+					"due": "2027-02-20"
+				},
+				{
+					"title": "Full rig on a tripod - mechanical stability and vibration check",
+					"priority": 3,
+					"due": "2027-02-28"
+				},
+				{
+					"title": "Phone app end to end against real hardware: shutter, exposure, joystick aiming",
+					"priority": 4,
+					"due": "2027-03-15"
+				},
+				{
+					"title": "Field test #1: outdoors, real light, real subjects, on battery",
+					"priority": 4,
+					"due": "2027-03-25"
+				},
+				{
+					"title": "Exposure: ETTR convergence with the raw-headroom correction, validated on real RAWs",
+					"priority": 5,
+					"due": "2027-04-05"
+				},
+				{
+					"title": "Validate composition scoring on your own photographs",
+					"priority": 5,
+					"due": "2027-04-10"
+				},
+				{
+					"title": "Autonomous scan→score→trigger loop, with JSONL decision logging",
+					"priority": 5,
+					"due": "2027-04-14"
+				},
+				{
+					"title": "🎯 TRIP REHEARSAL: full field day, power budget, weather, pack-down",
+					"priority": 6,
+					"due": "2027-04-18"
+				},
+				{
+					"title": "🚀 TRIP-READY",
+					"priority": 6,
+					"due": "2027-04-20"
+				}
+			]
+		},
+		{
+			"list": "10 Light & Shadow Game",
+			"project": "lanternfall",
+			"items": [
+				{
+					"title": "Play the full 30-encounter 3D journey in a rendered player",
+					"priority": 1,
+					"due": null
+				},
+				{
+					"title": "Fix playtest blockers and inspect encounter report",
+					"priority": 1,
+					"due": "2027-03-15"
+				},
+				{
+					"title": "Replace first-pass scenery, animation and audio",
+					"priority": 2,
+					"due": "2027-04-20"
+				},
+				{
+					"title": "Playtest with at least five new players",
+					"priority": 2,
+					"due": "2027-05-20"
+				},
+				{
+					"title": "Run final player build and performance checks",
+					"priority": 2,
+					"due": "2027-06-15"
+				},
+				{
+					"title": "Publish The Journey to Light",
+					"priority": 3,
+					"due": "2027-06-30"
+				}
+			]
+		},
+		{
+			"list": "12 Smart Notebook",
+			"project": "smart-notebook",
+			"items": [
+				{
+					"title": "Confirm the Plan A sensor stack on a bench prototype",
+					"priority": 0,
+					"due": "2026-12-01"
+				},
+				{
+					"title": "🛒 PROCUREMENT DEADLINE: order the sensor + electronics",
+					"priority": 0,
+					"due": "2026-12-31"
+				},
+				{
+					"title": "🛒 Send the 7 STLs to a printer — they are exported and ready",
+					"priority": 0,
+					"due": "2027-01-15"
+				},
+				{
+					"title": "⚠️ MILESTONE M0 - HARD GATE: sensor accuracy RMS < 0.30 mm",
+					"priority": 1,
+					"due": "2027-02-15"
+				},
+				{
+					"title": "Write a page and read it back as legible SVG (receiver.py serial)",
+					"priority": 1,
+					"due": "2027-02-28"
+				},
+				{
+					"title": "Firmware bring-up: FreeRTOS tasks, 1€ filter tuning, stroke segmentation, BLE, SD",
+					"priority": 2,
+					"due": "2027-03-20"
+				},
+				{
+					"title": "Sheet ID: 8-cell IR barcode with ambient cancellation + parity",
+					"priority": 2,
+					"due": "2027-04-05"
+				},
+				{
+					"title": "Chassis assembly: disc binding, registration pins, sheet-removal detection",
+					"priority": 3,
+					"due": "2027-04-30"
+				},
+				{
+					"title": "Print real sheets with fiducials + ID barcodes (make_sheets.py)",
+					"priority": 3,
+					"due": "2027-05-05"
+				},
+				{
+					"title": "Host pipeline: receiver → strokes → SVG/JSON, plus scan_pipeline.py ArUco camera capture",
+					"priority": 4,
+					"due": "2027-05-25"
+				},
+				{
+					"title": "Battery life + portability check under real use",
+					"priority": 4,
+					"due": "2027-06-05"
+				},
+				{
+					"title": "🎯 Use it as your actual notebook for a full week",
+					"priority": 5,
+					"due": "2027-06-20"
+				},
+				{
+					"title": "🚀 v1 complete (Plan B dock deferred to a later phase)",
+					"priority": 5,
+					"due": "2027-06-30"
+				}
+			]
+		},
+		{
+			"list": "13 Wage Transparency Tool",
+			"project": "wage-transparency-tool",
+			"items": [
+				{
+					"title": "Confirm ethics and data-protection requirements before recruitment",
+					"priority": 0,
+					"due": "2026-11-10"
+				},
+				{
+					"title": "Finalize Chinese privacy policy and consent",
+					"priority": 0,
+					"due": "2026-11-20"
+				},
+				{
+					"title": "Verify 社保 rates and benchmark sources",
+					"priority": 1,
+					"due": null
+				},
+				{
+					"title": "Make +86 SMS signup work end to end",
+					"priority": 1,
+					"due": null
+				},
+				{
+					"title": "Apply the trip-correction migration and test offline capture",
+					"priority": 1,
+					"due": null
+				},
+				{
+					"title": "Decide hosting and deploy an accessible rider app",
+					"priority": 1,
+					"due": "2026-12-15"
+				},
+				{
+					"title": "Test quick logging with riders after privacy gates",
+					"priority": 2,
+					"due": null
+				},
+				{
+					"title": "Begin rider recruitment only after the gate clears",
+					"priority": 2,
+					"due": "2027-01-05"
+				},
+				{
+					"title": "Validate aggregates and cross-project CSV numbers",
+					"priority": 3,
+					"due": null
+				},
+				{
+					"title": "Publish the transparency findings",
+					"priority": 3,
+					"due": "2027-06-30"
+				}
+			]
+		},
+		{
+			"list": "14 Delivery Simulator",
+			"project": "delivery-simulator",
+			"items": [
+				{
+					"title": "Finish the gig-app-style HUD",
+					"priority": 1,
+					"due": "2027-04-25"
+				},
+				{
+					"title": "Verify economy numbers against the Wage Tool fixture",
+					"priority": 1,
+					"due": null
+				},
+				{
+					"title": "Install Windows build support and create a playable package",
+					"priority": 2,
+					"due": "2027-06-25"
+				},
+				{
+					"title": "Playtest the shift loop with riders",
+					"priority": 2,
+					"due": "2027-05-20"
+				},
+				{
+					"title": "Publish a clearly labeled playable build",
+					"priority": 3,
+					"due": "2027-06-30"
+				}
+			]
+		},
+		{
+			"list": "17 InkWatch",
+			"project": "inkwatch",
+			"items": [
+				{
+					"title": "Resolve the panel FPC pinout and VGL diode orientation",
+					"priority": 1,
+					"due": null
+				},
+				{
+					"title": "Finish the BOM and crown daughterboard",
+					"priority": 1,
+					"due": null
+				},
+				{
+					"title": "Commit and merge the routed-board work",
+					"priority": 1,
+					"due": null
+				},
+				{
+					"title": "Compile firmware for the target and prove USB update",
+					"priority": 2,
+					"due": null
+				},
+				{
+					"title": "Order and assemble only after board blockers clear",
+					"priority": 2,
+					"due": null
+				},
+				{
+					"title": "Put InkWatch on the portfolio schedule",
+					"priority": 3,
+					"due": null
+				}
+			]
+		},
+		{
+			"list": "18 MacBook Cooling Case",
+			"project": "mba-cooling-case",
+			"items": [
+				{
+					"title": "Finalize and print the cooling cradle",
+					"priority": 1,
+					"due": null
+				},
+				{
+					"title": "Measure thermals and power on the MacBook Air M3",
+					"priority": 2,
+					"due": null
+				},
+				{
+					"title": "Commit the tested build package",
+					"priority": 3,
+					"due": null
+				}
+			]
+		},
+		{
+			"list": "21 Manim Animations",
+			"project": "manim-lessons",
+			"items": [
+				{
+					"title": "Download and test a Premium narration voice",
+					"priority": 1,
+					"due": null
+				},
+				{
+					"title": "Expand IB AA HL2 lessons in reviewed waves",
+					"priority": 1,
+					"due": null
+				},
+				{
+					"title": "Extend the stable lesson system to Physics, CS and MCM",
+					"priority": 2,
+					"due": null
+				}
+			]
+		},
+		{
+			"list": "Swift Student Challenge",
+			"project": "swift-student-challenge",
+			"items": [
+				{
+					"title": "Finish Swift Fundamentals milestone (Phase 1)",
+					"priority": null,
+					"due": "2026-10-12"
+				},
+				{
+					"title": "Finish SwiftUI & App-Building milestone (Phase 2)",
+					"priority": null,
+					"due": "2026-11-16"
+				},
+				{
+					"title": "Finish Playground Craft & Prototypes milestone (Phase 3)",
+					"priority": null,
+					"due": "2026-12-14"
+				},
+				{
+					"title": "Lock final concept (Phase 4)",
+					"priority": null,
+					"due": "2027-01-04"
+				},
+				{
+					"title": "Feature-complete build (Phase 5)",
+					"priority": null,
+					"due": "2027-02-01"
+				},
+				{
+					"title": "Submit Swift Student Challenge entry (Phase 6)",
+					"priority": null,
+					"due": "2027-02-20"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,112 @@
+---
+import { projectBySlug, STATUS_LABEL } from '../data/projects';
+import { snapshotDate, todosFor, formatDue, relative } from '../lib/todos';
+import TodoList from './TodoList.astro';
+
+interface Props {
+	slug: string;
+}
+
+const { slug } = Astro.props;
+const project = projectBySlug(slug);
+// A typo in a post's `project:` would otherwise just drop its to-do list quietly.
+if (!project) throw new Error(`Post sets project: "${slug}", which is not in src/data/projects.ts`);
+const todos = todosFor(slug);
+---
+
+<aside class="panel" id="todo">
+	<h2>
+		{project.name}
+		<span class="status">{STATUS_LABEL[project.status]}</span>
+	</h2>
+	{
+		project.live && (
+			<p class="live">
+				Live at <a href={project.live}>{project.live.replace('https://', '')}</a>
+			</p>
+		)
+	}
+	{
+		project.target && (
+			<p class="target">
+				Target <strong>{formatDue(project.target.date)}</strong> ({relative(project.target.date)}) —{' '}
+				{project.target.label}. <span class="src">Stated in the {project.target.source}.</span>
+			</p>
+		)
+	}
+	{project.note && <p class="note">{project.note}</p>}
+	{
+		todos.length > 0 ? (
+			<>
+				<h3>Open items</h3>
+				<TodoList todos={todos} />
+				<p class="foot">
+					From Reminders, as of {formatDue(snapshotDate)}. <a href="/projects">All projects →</a>
+				</p>
+			</>
+		) : (
+			<p class="foot">
+				No open items tracked for this project. <a href="/projects">All projects →</a>
+			</p>
+		)
+	}
+</aside>
+
+<style>
+	.panel {
+		margin-top: 3em;
+		padding: 1.2em 1.4em 1em;
+		border: 1px solid var(--rule);
+		border-radius: 4px;
+		background: var(--code-bg);
+	}
+	h2 {
+		font-size: 1rem;
+		margin: 0 0 0.3em;
+		display: flex;
+		align-items: baseline;
+		gap: 0.7em;
+		flex-wrap: wrap;
+	}
+	h3 {
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: var(--ink-dim);
+		margin: 1em 0 0.2em;
+	}
+	.status {
+		font-size: 0.65rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		border: 1px solid currentColor;
+		border-radius: 2px;
+		padding: 1px 6px;
+		color: var(--accent);
+		font-weight: 600;
+	}
+	.live {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+	.target {
+		margin: 0.5em 0 0;
+		font-size: 0.9rem;
+	}
+	.src {
+		color: var(--ink-dim);
+		font-size: 0.8rem;
+	}
+	.note {
+		margin: 0.8em 0 0;
+		padding-left: 0.8em;
+		border-left: 3px solid var(--accent);
+		font-size: 0.85rem;
+		color: var(--ink-dim);
+	}
+	.foot {
+		margin: 0.8em 0 0;
+		font-size: 0.8rem;
+		color: var(--ink-dim);
+	}
+</style>

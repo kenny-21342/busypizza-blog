@@ -1,0 +1,248 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import TodoList from '../components/TodoList.astro';
+import { PROJECTS, STATUS_LABEL, STATUS_ORDER } from '../data/projects';
+import { getPublishedPosts } from '../lib/posts';
+import {
+	SOON_DAYS,
+	relative,
+	allDated,
+	dueState,
+	formatDue,
+	snapshotDate,
+	todosFor,
+	undatedCount,
+} from '../lib/todos';
+
+const posts = await getPublishedPosts();
+// A project links to its dev log only if that post is actually published, so a
+// draft never leaves a dangling link in a production build.
+const postFor = new Map(posts.filter((p) => p.data.project).map((p) => [p.data.project!, p]));
+
+const dated = allDated();
+const overdue = dated.filter((t) => dueState(t.due) === 'overdue');
+const soon = dated.filter((t) => dueState(t.due) === 'soon');
+const later = dated.filter((t) => dueState(t.due) === 'later');
+const undated = undatedCount();
+
+const groups = STATUS_ORDER.map((status) => ({
+	status,
+	projects: PROJECTS.filter((p) => p.status === status),
+})).filter((g) => g.projects.length > 0);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="Projects — BusyPizza 🍕"
+			description="Every project in flight, the dates each one is working toward, and what is still open."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Projects</h1>
+			<p class="lede">
+				What is in flight, what is finished, and the dates each project is working toward. Open
+				items mirror the Reminders lists, snapshotted {formatDue(snapshotDate)}; dates left off a
+				list are shown as not set rather than guessed.
+			</p>
+
+			<p class="stats">
+				<span><strong>{PROJECTS.length}</strong> projects</span>
+				<span class:list={{ hot: overdue.length > 0 }}>
+					<strong>{overdue.length}</strong> overdue
+				</span>
+				<span><strong>{soon.length}</strong> due within {SOON_DAYS} days</span>
+				<span><strong>{later.length}</strong> later</span>
+				<span><strong>{undated}</strong> with no date</span>
+			</p>
+
+			{
+				overdue.length > 0 && (
+					<section>
+						<h2 class="label hot">Overdue</h2>
+						<TodoList todos={overdue} />
+					</section>
+				)
+			}
+			{
+				soon.length > 0 && (
+					<section>
+						<h2 class="label">Next {SOON_DAYS} days</h2>
+						<TodoList todos={soon} />
+					</section>
+				)
+			}
+			{
+				later.length > 0 && (
+					<section>
+						<h2 class="label">Later</h2>
+						<details>
+							<summary>{later.length} dated items, through {formatDue(later[later.length - 1].due)}</summary>
+							<TodoList todos={later} />
+						</details>
+					</section>
+				)
+			}
+
+			<h2 class="label by-project">By project</h2>
+			{
+				groups.map((g) => (
+					<section>
+						<h3 class="group">{STATUS_LABEL[g.status]}</h3>
+						{g.projects.map((p) => {
+							const todos = todosFor(p.slug);
+							const post = postFor.get(p.slug);
+							const next = todos.find((t) => t.due);
+							const undatedHere = todos.filter((t) => !t.due).length;
+							return (
+								<article class="card" id={p.slug}>
+									<h4>{post ? <a href={`/blog/${post.id}/`}>{p.name}</a> : p.name}</h4>
+									<p class="blurb">{p.blurb}</p>
+									<p class="links">
+										{post && <a href={`/blog/${post.id}/`}>Dev log</a>}
+										{p.live && <a href={p.live}>{p.live.replace('https://', '')}</a>}
+									</p>
+									{p.target && (
+										<p class="target">
+											Target <strong>{formatDue(p.target.date)}</strong> ({relative(p.target.date)}) —{' '}
+											{p.target.label}
+										</p>
+									)}
+									{p.note && <p class="note">{p.note}</p>}
+									{todos.length > 0 ? (
+										<details>
+											<summary>
+												{todos.length} open
+												{next && (
+													<>
+														 · next <time datetime={next.due!}>{formatDue(next.due!)}</time>
+													</>
+												)}
+												{undatedHere > 0 && <> · {undatedHere} undated</>}
+											</summary>
+											<TodoList todos={todos} />
+										</details>
+									) : (
+										<p class="none">No open items tracked.</p>
+									)}
+								</article>
+							);
+						})}
+					</section>
+				))
+			}
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.lede {
+		color: var(--ink-dim);
+		max-width: 56ch;
+		margin-bottom: 1.5em;
+	}
+	.stats {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4em 1.6em;
+		font-size: 0.85rem;
+		color: var(--ink-dim);
+		padding: 0.8em 0;
+		margin: 0 0 2em;
+		border-top: 1px solid var(--rule);
+		border-bottom: 1px solid var(--rule);
+	}
+	.stats strong {
+		color: var(--ink);
+		font-size: 1.1rem;
+	}
+	.stats .hot,
+	.stats .hot strong {
+		color: var(--accent);
+	}
+	.label {
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: var(--ink-dim);
+		margin: 2em 0 0.4em;
+		font-weight: 600;
+	}
+	.label.hot {
+		color: var(--accent);
+	}
+	.by-project {
+		margin-top: 3.5em;
+		padding-top: 1.5em;
+		border-top: 1px solid var(--rule);
+	}
+	.group {
+		font-size: 1.05rem;
+		margin: 1.8em 0 0.4em;
+	}
+	.card {
+		padding: 1em 0;
+		border-bottom: 1px solid var(--rule);
+	}
+	.card h4 {
+		margin: 0;
+		font-size: 1rem;
+	}
+	.card h4 a {
+		text-decoration: none;
+		color: var(--ink);
+	}
+	.card h4 a:hover {
+		color: var(--accent);
+	}
+	.blurb {
+		margin: 0.2em 0 0;
+		color: var(--ink-dim);
+		font-size: 0.92rem;
+	}
+	.links {
+		margin: 0.3em 0 0;
+		display: flex;
+		gap: 1.1em;
+		font-size: 0.85rem;
+	}
+	.target {
+		margin: 0.4em 0 0;
+		font-size: 0.88rem;
+	}
+	.note {
+		margin: 0.5em 0 0;
+		padding-left: 0.8em;
+		border-left: 3px solid var(--accent);
+		font-size: 0.82rem;
+		color: var(--ink-dim);
+	}
+	.none {
+		margin: 0.5em 0 0;
+		font-size: 0.85rem;
+		color: var(--ink-dim);
+		font-style: italic;
+	}
+	details {
+		margin-top: 0.5em;
+	}
+	summary {
+		cursor: pointer;
+		font-size: 0.85rem;
+		color: var(--ink-dim);
+	}
+	summary:hover {
+		color: var(--accent);
+	}
+	/* Land on a card without it hiding under the top of the viewport. */
+	.card:target {
+		scroll-margin-top: 1em;
+		background: var(--code-bg);
+	}
+</style>
