@@ -4,7 +4,7 @@ description: 'Printing from the normal Share menu to the school printers, with j
 pubDate: 2026-10-16
 category: devlog
 tags: ['ios', 'python', 'infrastructure']
-draft: true
+draft: false
 project: school-printer
 ---
 

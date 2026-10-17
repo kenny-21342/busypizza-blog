@@ -4,7 +4,7 @@ description: 'A canvas that writes TikZ and CircuiTikZ, entirely in the browser.
 pubDate: 2026-10-16
 category: devlog
 tags: ['latex', 'web', 'testing']
-draft: true
+draft: false
 project: tikz-generator
 ---
 

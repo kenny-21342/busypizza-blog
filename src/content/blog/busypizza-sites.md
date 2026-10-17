@@ -4,7 +4,7 @@ description: 'A one-file landing page with a subdomain per tool, and a blog whos
 pubDate: 2026-10-16
 category: devlog
 tags: ['web', 'astro', 'meta']
-draft: true
+draft: false
 ---
 
 There are two sites. `busypizza.bond` is the tools hub; this blog lives on

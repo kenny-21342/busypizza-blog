@@ -4,7 +4,7 @@ description: 'IB Maths and Physics animation lessons with spoken narration. A le
 pubDate: 2026-10-16
 category: devlog
 tags: ['python', 'education', 'physics']
-draft: true
+draft: false
 project: manim-lessons
 ---
 

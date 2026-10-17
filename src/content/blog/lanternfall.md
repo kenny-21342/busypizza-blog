@@ -4,7 +4,7 @@ description: 'Six monuments, thirty discoveries, no hand-made assets. A bot has 
 pubDate: 2026-10-16
 category: devlog
 tags: ['unity', 'games', 'csharp']
-draft: true
+draft: false
 project: lanternfall
 ---
 

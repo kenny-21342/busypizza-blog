@@ -4,7 +4,7 @@ description: 'A driving game about delivery-rider economics that cannot tell rea
 pubDate: 2026-10-16
 category: devlog
 tags: ['unity', 'games', 'research']
-draft: true
+draft: false
 project: delivery-simulator
 ---
 

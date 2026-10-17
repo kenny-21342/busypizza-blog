@@ -4,7 +4,7 @@ description: 'A TypeScript engine measured on real documents and archived, then 
 pubDate: 2026-10-16
 category: devlog
 tags: ['latex', 'research', 'rust']
-draft: true
+draft: false
 project: realtime-tex
 ---
 

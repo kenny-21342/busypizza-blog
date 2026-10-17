@@ -4,7 +4,7 @@ description: 'Tracks a shuttlecock on screen during a livestream. The deciding s
 pubDate: 2026-10-16
 category: devlog
 tags: ['python', 'computer-vision', 'research']
-draft: true
+draft: false
 project: badminton-tracker
 ---
 

@@ -4,7 +4,7 @@ description: 'A native iPhone camera with a composition coach and an editor. The
 pubDate: 2026-10-16
 category: devlog
 tags: ['ios', 'swift', 'machine-learning']
-draft: true
+draft: false
 project: lumina-camera
 ---
 

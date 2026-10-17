@@ -4,7 +4,7 @@ description: 'A macOS editor and build driver written for one set of notes. It h
 pubDate: 2026-10-16
 category: devlog
 tags: ['latex', 'macos', 'swift']
-draft: true
+draft: false
 project: texfast
 ---
 

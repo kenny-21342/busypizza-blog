@@ -4,7 +4,7 @@ description: 'A pan-tilt rig that scans a scene, scores frames and triggers a Ni
 pubDate: 2026-10-16
 category: devlog
 tags: ['hardware', 'python', 'photography']
-draft: true
+draft: false
 project: d7000-control
 ---
 

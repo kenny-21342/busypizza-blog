@@ -4,7 +4,7 @@ description: 'Two editors in one repository, a hard deadline on 4 November, and 
 pubDate: 2026-10-16
 category: devlog
 tags: ['latex', 'macos', 'tauri']
-draft: true
+draft: false
 project: shipout
 ---
 

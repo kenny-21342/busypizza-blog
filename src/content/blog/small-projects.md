@@ -4,7 +4,7 @@ description: 'The repositories and folders too small for a post of their own, ea
 pubDate: 2026-10-16
 category: devlog
 tags: ['python', 'physics', 'tools']
-draft: true
+draft: false
 project: small-projects
 ---
 

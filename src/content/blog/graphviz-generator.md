@@ -4,7 +4,7 @@ description: 'A visual Graphviz editor that had to move from the dot binary to W
 pubDate: 2026-10-16
 category: devlog
 tags: ['web', 'nextjs']
-draft: true
+draft: false
 project: graphviz-generator
 ---
 

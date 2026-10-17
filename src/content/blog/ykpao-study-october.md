@@ -4,7 +4,7 @@ description: 'Fifteen commits since the development log: skill tags, difficulty 
 pubDate: 2026-10-16
 category: devlog
 tags: ['nextjs', 'education', 'ai']
-draft: true
+draft: false
 project: ykpao-study
 ---
 

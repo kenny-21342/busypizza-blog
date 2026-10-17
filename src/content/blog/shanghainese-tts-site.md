@@ -4,7 +4,7 @@ description: 'Type Chinese text, hear it in Shanghainese. How a ten-commit proto
 pubDate: 2026-10-16
 category: devlog
 tags: ['audio', 'web', 'nextjs']
-draft: true
+draft: false
 project: tts-site
 ---
 

@@ -4,7 +4,7 @@ description: 'A tool for delivery riders to log trips and see what an hour of th
 pubDate: 2026-10-16
 category: devlog
 tags: ['nextjs', 'research', 'privacy']
-draft: true
+draft: false
 project: wage-transparency-tool
 ---
 

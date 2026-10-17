@@ -4,7 +4,7 @@ description: 'A redesign on 24 September, a decoder bake-off that picked ArUco t
 pubDate: 2026-10-16
 category: devlog
 tags: ['hardware', 'python', 'research']
-draft: true
+draft: false
 project: smart-notebook
 ---
 

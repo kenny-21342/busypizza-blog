@@ -4,7 +4,7 @@ description: 'The constraint is that a Mac offers only 5 V downstream. Every des
 pubDate: 2026-10-16
 category: devlog
 tags: ['hardware', '3d-printing']
-draft: true
+draft: false
 project: mba-cooling-case
 ---
 

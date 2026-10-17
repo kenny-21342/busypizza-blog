@@ -4,7 +4,7 @@ description: 'A square e-paper calendar watch with no radio. The board is genera
 pubDate: 2026-10-16
 category: devlog
 tags: ['hardware', 'pcb', 'esp32']
-draft: true
+draft: false
 project: inkwatch
 ---
 

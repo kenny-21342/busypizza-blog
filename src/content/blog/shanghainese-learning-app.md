@@ -4,7 +4,7 @@ description: 'An offline, audio-first course for Mandarin speakers. The app and 
 pubDate: 2026-10-16
 category: devlog
 tags: ['audio', 'education', 'react-native']
-draft: true
+draft: false
 project: shanghai-dialect
 ---
 

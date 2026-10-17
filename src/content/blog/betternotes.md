@@ -4,7 +4,7 @@ description: 'An iPad and Mac notes app on PencilKit. The sync design is settled
 pubDate: 2026-10-16
 category: devlog
 tags: ['ios', 'macos', 'swift']
-draft: true
+draft: false
 project: betternotes
 ---
 
