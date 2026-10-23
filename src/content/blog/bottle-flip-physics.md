@@ -4,7 +4,7 @@ description: '用一个可调参数的二维模型，看水怎样改变转动惯
 pubDate: 2026-10-23
 category: writing
 tags: ['physics', 'simulation']
-draft: true
+draft: false
 ---
 
 扔水瓶有点像一场小型的“空中配平”。你先给瓶子一个向上的速度和一个自转；它离手后，整只瓶子的质心继续走抛物线，瓶内的水却会在瓶身里跑动。于是，瓶子下落时可能已经不像刚出手时那样转得快。

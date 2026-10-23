@@ -4,7 +4,7 @@ description: '从击球、借墙到防守站位，再看单打和双打为什么
 pubDate: 2026-10-23
 category: writing
 tags: ['physics', 'foosball']
-draft: true
+draft: false
 ---
 
 *从击球、借墙到防守站位，再看单打和双打为什么像两种游戏*
