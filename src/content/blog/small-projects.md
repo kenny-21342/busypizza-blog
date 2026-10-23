@@ -25,14 +25,15 @@ say what the phone subscribes to. It has four commits.
 
 ## Bottle flip physics, and foosball mechanics
 
-Two Chinese-language explainers with simulations, both created on 10 October.
+Two Chinese-language explainers with simulations, both created on 10 October and now
+published in full under Writing.
 
-- **Bottle flip** is an article with an interactive model. The reader chooses a bottle
+- **[Bottle flip](/blog/bottle-flip-physics/)** is an article with an [interactive model](/bottle-flip/index.html). The reader chooses a bottle
   standing on its base or inverted on its cap, then adjusts release height and starting
   angle. The model slices the bottle into 72 axial pieces to approximate the mass of bottle
   and water, lets the water spread from the base along the bottle during flight, and updates
   the spin by conserving angular momentum. `node model.test.js` runs checks on the model.
-- **Foosball mechanics** is an article with two physics videos — a bank shot that passes
+- **[Foosball mechanics](/blog/foosball-mechanics/)** is an article with two physics videos — a bank shot that passes
   under a defender, and a split shot that is blocked or goes through depending on the
   defenders' stance. A Pymunk 7.3.0 simulation computes the collisions and Manim renders
   the animation; an English draft is kept.
