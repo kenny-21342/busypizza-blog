@@ -4,7 +4,7 @@ description: 'Notes from a debugging session: a random startup crash, a sign-in 
 pubDate: 2026-10-29
 category: devlog
 tags: ['debugging', 'wine', 'macos', 'games']
-draft: true
+draft: false
 ---
 
 These are notes from a Claude Code debugging session on an Apple Silicon Mac, getting
